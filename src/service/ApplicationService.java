@@ -3,12 +3,7 @@ package service;
 import model.Application;
 import model.Status;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Random;
 
 public class ApplicationService {
     private HashMap<Long, Application> appCollection = new HashMap<>();
@@ -22,9 +17,22 @@ public class ApplicationService {
 
     }
 
-    public void addApplication(String company, String payement, String position) {
-        Application app = new Application(Status.APPLIED, payement, position, company, ++this.nextId);
+    public void addApplication(String company, String payment, String position) {
+        Application app = new Application(company, ++this.nextId, Status.APPLIED, payment, position);
         this.setInMap(app);
+    }
+
+    public void changeStatus(long id, Status status) throws ApplicationNotFoundException {
+        Application app = this.appCollection.get(id);
+        if (app == null) {
+            throw new ApplicationNotFoundException(id);
+        }
+        app.setStatus(status);
+    }
+
+    public void writeAllApplications(){
+        this.appCollection.values().stream()
+                .forEach(System.out::println);
     }
 
 }

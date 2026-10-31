@@ -10,7 +10,7 @@ public class Application {
     private Status status;
     private LocalDate createdAt;
 
-    public Application(Status status, String payment, String position, String company, long id) {
+    public Application( String company, long id, Status status, String payment, String position) {
         this.status = status;
         this.payment = payment;
         this.position = position;
@@ -62,7 +62,7 @@ public class Application {
 
     @Override
     public String toString() {
-        return "Application{" +
+        return " Application - {" +
                 "id=" + id +
                 ", company='" + company + '\'' +
                 ", position='" + position + '\'' +
