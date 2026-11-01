@@ -30,6 +30,10 @@ public class ApplicationService {
         app.setStatus(status);
     }
 
+ public void deleteApplication(long id) {
+        this.appCollection.remove(id);
+    }
+
     public void writeAllApplications(){
         this.appCollection.values().stream()
                 .forEach(System.out::println);
