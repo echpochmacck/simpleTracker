@@ -14,6 +14,8 @@ public class Main {
             System.out.println("1. add new Application");
             System.out.println("2. change status");
             System.out.println("3. delete application");
+            System.out.println("4. to see statistic");
+            System.out.println("0. to close program");
             String command = scanner.nextLine();
             switch (command) {
                 case ("1"):
@@ -25,6 +27,11 @@ public class Main {
                 case ("3"):
                     consoleDelete(scanner, service);
                     break;
+                    case ("4"):
+                    consoleStatistick(service);
+                    break;
+                case ("0"):
+                    return;
             }
 
         }
@@ -38,13 +45,21 @@ public class Main {
         service.addApplication(company, payment, position);
         System.out.println("All applications");
         service.writeAllApplications();
+
     }
 
     private static void consoleDelete(Scanner scanner, ApplicationService service) {
-        System.out.println("Write id to delete application");
-        String id = scanner.nextLine();
-        Long formatted = Long.valueOf(id);
-        service.deleteApplication(formatted);
+
+        try {
+            System.out.println("Write id to delete application");
+            String id = scanner.nextLine();
+            Long formatted = Long.valueOf(id);
+            service.deleteApplication(formatted);
+        } catch (ApplicationNotFoundException e) {
+           System.out.println(e.getMessage());
+        } catch(NumberFormatException e) {
+            System.out.println("Id should be numeric");
+        }
         System.out.println("All applications");
         service.writeAllApplications();
     }
@@ -60,5 +75,8 @@ public class Main {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+    private static void consoleStatistick(ApplicationService service) {
+        System.out.println(service.getStatistickByStatus());
     }
 }

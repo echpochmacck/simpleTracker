@@ -18,7 +18,7 @@ public class ApplicationService {
     }
 
     public void addApplication(String company, String payment, String position) {
-        Application app = new Application(company, ++this.nextId, Status.APPLIED, payment, position);
+        Application app = new Application(company, this.nextId++, Status.APPLIED, payment, position);
         this.setInMap(app);
     }
 
@@ -30,13 +30,31 @@ public class ApplicationService {
         app.setStatus(status);
     }
 
- public void deleteApplication(long id) {
-        this.appCollection.remove(id);
+ public void deleteApplication(long id) throws ApplicationNotFoundException {
+     if (!this.appCollection.containsKey(id)) {
+         throw new ApplicationNotFoundException(id);
+     }
+            this.appCollection.remove(id);
     }
 
     public void writeAllApplications(){
         this.appCollection.values().stream()
                 .forEach(System.out::println);
     }
+
+    public HashMap<Status, Integer> getStatistickByStatus() {
+        HashMap<Status, Integer> statistickMap = new HashMap<>();
+
+        this.appCollection.values().stream().forEach((val) -> {
+            if (!statistickMap.containsKey(val.getStatus())) {
+                statistickMap.put(val.getStatus(), 1);
+            } else {
+                Integer i = statistickMap.get(val.getStatus());
+                statistickMap.put(val.getStatus(), ++i);
+            }
+        });
+        return statistickMap;
+    }
+
 
 }
