@@ -32,6 +32,9 @@ public class Main {
                     break;
                 case ("0"):
                     return;
+                default:
+                    System.out.println("There is no such command");
+                    break;
             }
 
         }
@@ -47,7 +50,7 @@ public class Main {
             System.out.println("All applications");
             service.writeAllApplications();
         }catch(NumberFormatException e) {
-            System.out.println("Id should be numeric");
+            System.out.println("Payment should be numeric");
         }
     }
 
