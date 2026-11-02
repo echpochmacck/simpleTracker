@@ -6,11 +6,11 @@ public class Application {
     private long id;
     private String company;
     private String position;
-    private String payment;
+    private Long payment;
     private Status status;
     private LocalDate createdAt;
 
-    public Application( String company, long id, Status status, String payment, String position) {
+    public Application( String company, long id, Status status, Long payment, String position) {
         this.status = status;
         this.payment = payment;
         this.position = position;
@@ -32,11 +32,11 @@ public class Application {
         this.status = status;
     }
 
-    public String getPayment() {
+    public Long getPayment() {
         return payment;
     }
 
-    public void setPayment(String payment) {
+    public void setPayment(Long payment) {
         this.payment = payment;
     }
 

@@ -38,14 +38,17 @@ public class Main {
     }
 
     private static void consoleAddApp(Scanner scanner, ApplicationService service) {
-        System.out.println("Write company, payment, position");
-        String company = scanner.nextLine();
-        String payment = scanner.nextLine();
-        String position = scanner.nextLine();
-        service.addApplication(company, payment, position);
-        System.out.println("All applications");
-        service.writeAllApplications();
-
+        try {
+            System.out.println("Write company, payment, position");
+            String company = scanner.nextLine();
+            Long payment = Long.valueOf(scanner.nextLine());
+            String position = scanner.nextLine();
+            service.addApplication(company, payment, position);
+            System.out.println("All applications");
+            service.writeAllApplications();
+        }catch(NumberFormatException e) {
+            System.out.println("Id should be numeric");
+        }
     }
 
     private static void consoleDelete(Scanner scanner, ApplicationService service) {
@@ -55,8 +58,6 @@ public class Main {
             String id = scanner.nextLine();
             Long formatted = Long.valueOf(id);
             service.deleteApplication(formatted);
-        } catch (ApplicationNotFoundException e) {
-           System.out.println(e.getMessage());
         } catch(NumberFormatException e) {
             System.out.println("Id should be numeric");
         }

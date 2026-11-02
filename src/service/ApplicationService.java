@@ -4,6 +4,9 @@ import model.Application;
 import model.Status;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class ApplicationService {
     private HashMap<Long, Application> appCollection = new HashMap<>();
@@ -17,7 +20,7 @@ public class ApplicationService {
 
     }
 
-    public void addApplication(String company, String payment, String position) {
+    public void addApplication(String company, Long payment, String position) {
         Application app = new Application(company, this.nextId++, Status.APPLIED, payment, position);
         this.setInMap(app);
     }
@@ -30,10 +33,7 @@ public class ApplicationService {
         app.setStatus(status);
     }
 
- public void deleteApplication(long id) throws ApplicationNotFoundException {
-     if (!this.appCollection.containsKey(id)) {
-         throw new ApplicationNotFoundException(id);
-     }
+ public void deleteApplication(long id) {
             this.appCollection.remove(id);
     }
 
@@ -42,18 +42,9 @@ public class ApplicationService {
                 .forEach(System.out::println);
     }
 
-    public HashMap<Status, Integer> getStatistickByStatus() {
-        HashMap<Status, Integer> statistickMap = new HashMap<>();
+    public Map<Status, Long> getStatistickByStatus() {
 
-        this.appCollection.values().stream().forEach((val) -> {
-            if (!statistickMap.containsKey(val.getStatus())) {
-                statistickMap.put(val.getStatus(), 1);
-            } else {
-                Integer i = statistickMap.get(val.getStatus());
-                statistickMap.put(val.getStatus(), ++i);
-            }
-        });
-        return statistickMap;
+        return this.appCollection.values().stream().collect(Collectors.groupingBy(x->x.getStatus(), Collectors.counting()));
     }
 
 
