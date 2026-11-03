@@ -1,4 +1,5 @@
 import model.Status;
+import repository.JdbcApplicationRepository;
 import service.ApplicationService;
 
 import java.util.Scanner;
@@ -7,7 +8,7 @@ import java.util.Scanner;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        ApplicationService service = new ApplicationService();
+        ApplicationService service = new ApplicationService(new JdbcApplicationRepository());
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("1. add new Application");
