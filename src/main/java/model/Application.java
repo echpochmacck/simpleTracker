@@ -3,19 +3,19 @@ package model;
 import java.time.LocalDate;
 
 public class Application {
-    private long id;
+    private final long id;
     private String company;
     private String position;
     private Long payment;
     private Status status;
-    private LocalDate createdAt;
+    private final LocalDate createdAt;
 
-    public Application( String company, long id, Status status, Long payment, String position) {
+    public Application( String company, long id, Status status, Long payment, String position, LocalDate createdAt) {
         this.status = status;
         this.payment = payment;
         this.position = position;
         this.company = company;
-        this.createdAt = LocalDate.now();
+        this.createdAt = createdAt ;
         this.id = id;
     }
 
