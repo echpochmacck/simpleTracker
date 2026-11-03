@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DbClientConnectionScopeFilter">
+    <option name="entries">
+      <list>
+        <ConnectionScopeStateEntry>
+          <option name="connectionId" value="42d6df5e-4758-4fa4-8033-f1c8055d5c49" />
+          <option name="perDatabaseSchemas">
+            <list>
+              <DatabaseSchemaListing>
+                <option name="database" value="tracker" />
+                <option name="visibleSchemas">
+                  <list>
+                    <option value="public" />
+                  </list>
+                </option>
+              </DatabaseSchemaListing>
+            </list>
+          </option>
+          <option name="visibleDatabases">
+            <list>
+              <option value="tracker" />
+            </list>
+          </option>
+        </ConnectionScopeStateEntry>
+      </list>
+    </option>
+  </component>
+</project>

@@ -1,5 +1,4 @@
 import model.Status;
-import service.ApplicationNotFoundException;
 import service.ApplicationService;
 
 import java.util.Scanner;

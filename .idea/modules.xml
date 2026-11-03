@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/simpleTracker.iml" filepath="$PROJECT_DIR$/simpleTracker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/postgresql.iml" filepath="$PROJECT_DIR$/postgresql.iml" />
     </modules>
   </component>
 </project>

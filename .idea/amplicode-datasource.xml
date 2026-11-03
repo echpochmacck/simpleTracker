@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AmplicodeJpaDataSourceConfig">
+    <data-sources>
+      <data-source id="96726f50-3587-4096-8c03-6e5e2d6f72ed" name="simpleTracker" url="jdbc:postgresql://localhost/tracker" driverClass="org.postgresql.Driver" />
+    </data-sources>
+  </component>
+</project>
