@@ -15,6 +15,7 @@ public class Main {
             System.out.println("2. change status");
             System.out.println("3. delete application");
             System.out.println("4. to see statistic");
+            System.out.println("5. to see all applications");
             System.out.println("0. to close program");
             String command = scanner.nextLine();
             switch (command) {
@@ -27,8 +28,11 @@ public class Main {
                 case ("3"):
                     consoleDelete(scanner, service);
                     break;
-                    case ("4"):
+                case ("4"):
                     consoleStatistick(service);
+                    break;
+                case ("5"):
+                    consoleAll(service);
                     break;
                 case ("0"):
                     return;
@@ -49,9 +53,13 @@ public class Main {
             service.addApplication(company, payment, position);
             System.out.println("All applications");
             service.writeAllApplications();
-        }catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println("Payment should be numeric");
         }
+    }
+
+    private static void consoleAll(ApplicationService service) {
+       service.writeAllApplications();
     }
 
     private static void consoleDelete(Scanner scanner, ApplicationService service) {
@@ -61,7 +69,7 @@ public class Main {
             String id = scanner.nextLine();
             Long formatted = Long.valueOf(id);
             service.deleteApplication(formatted);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println("Id should be numeric");
         }
         System.out.println("All applications");
@@ -80,6 +88,7 @@ public class Main {
             System.out.println(e.getMessage());
         }
     }
+
     private static void consoleStatistick(ApplicationService service) {
         System.out.println(service.getStatistickByStatus());
     }

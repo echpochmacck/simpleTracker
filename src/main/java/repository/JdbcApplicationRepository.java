@@ -9,9 +9,7 @@ import javax.swing.text.html.Option;
 import javax.xml.crypto.Data;
 import java.awt.image.DataBuffer;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class JdbcApplicationRepository implements ApplicationRepository {
     @Override
@@ -70,7 +68,7 @@ public class JdbcApplicationRepository implements ApplicationRepository {
             Statement s = conn.createStatement();
             try (ResultSet res = s.executeQuery(sql)) {
                 List<Application> list = new ArrayList<>();
-                while(res.next()) {
+                while (res.next()) {
                     list.add(mapRow(res));
                 }
                 return list;
@@ -110,6 +108,23 @@ public class JdbcApplicationRepository implements ApplicationRepository {
 
         } catch (SQLException e) {
             throw new RuntimeException("Error with db", e);
+        }
+    }
+
+    @Override
+    public Map<Status, Long> getStatistic() {
+        String sql = "SELECT status, COUNT(id) FROM applications GROUP BY status";
+        try (Connection conn = Database.getConnection()) {
+            Statement s = conn.createStatement();
+            try (ResultSet res = s.executeQuery(sql)) {
+                Map<Status, Long> resultMap = new HashMap<>();
+                while (res.next()) {
+                    resultMap.put(Status.valueOf(res.getString("status")), res.getLong("count"));
+                }
+                return resultMap;
+            }
+        } catch (SQLException e) {
+           throw new RuntimeException("Db error " + e);
         }
     }
 }

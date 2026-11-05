@@ -4,6 +4,7 @@ import model.Application;
 import model.Status;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface ApplicationRepository {
@@ -12,4 +13,5 @@ public interface ApplicationRepository {
     List<Application> findAll();
     void updateStatus (long id, Status status);
     void deleteById(long id);
+    Map<Status, Long> getStatistic();
 }
